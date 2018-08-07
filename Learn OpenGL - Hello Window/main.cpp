@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+void processInput(GLFWwindow* window);
 void framebuffer_size_callback(GLFWwindow * window, int width, int height);
 
 int main()
@@ -38,12 +39,21 @@ int main()
 
 	while (!glfwWindowShouldClose(window))
 	{
+		// process user input
+		processInput(window);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
 	glfwTerminate();
 	return 0;
+}
+
+void processInput(GLFWwindow* window)
+{
+	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, true);
 }
 
 void framebuffer_size_callback(GLFWwindow * window, int width, int height)
